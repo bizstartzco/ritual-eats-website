@@ -2,6 +2,16 @@
 
 Newest first. Each entry is a version you can open at the preview link.
 
+## 2026-09-29 — Version 5: chat
+
+- "Chat with us" button bottom-left opens a counter bot. It answers about hours (live, from the
+  clock), the full menu and prices, tonight's special, the address, booking rules, pickup and
+  delivery, and can add items straight to the order tray from the conversation.
+- Quick-reply chips, typing indicator, conversation kept for the visit, full-screen on phones.
+- It will not guess at allergens or policies it does not know; it hands those to the phone number.
+- Optional upgrade in `server/`: a small Cloudflare Worker that answers with Claude, with the
+  page falling back to the built-in bot if the server is unavailable.
+
 ## 2026-09-29 — Version 4: phone layout pass
 
 - Audited at a real phone size (390×844) with frames every 8% of the scroll.
