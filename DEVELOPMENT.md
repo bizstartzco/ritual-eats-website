@@ -54,6 +54,17 @@ orbiting ring and steam.
 - The cart lives in `localStorage` under `re-cart`. Checkout and booking are demo-only: replace
   the two `submit` handlers with a request to your backend or embed an ordering provider.
 
+## Chat
+
+`window.RITUAL_CHAT` at the top of the script holds the config: `endpoint` (empty = built-in bot),
+`phone` and `smsHref`. The built-in bot is `brain(text)`: ordered regex intents over the page's
+own data (`HOURS`, `SPECIALS`, `CATALOG`) that return `[reply, actions]`; actions are buttons
+that open the menu, the order tray, the booking form, Maps, or SMS, or add an item. Conversation
+history lives in `sessionStorage` under `ritual-chat`. With an `endpoint` set, each message is
+POSTed as `{messages, context}` and the reply is used verbatim, keeping the local actions; any
+failure falls back to the local reply. `server/worker.js` is a ready endpoint (see
+`server/README.md`). `window.ritualChat.{open,close,send}` exists for testing.
+
 ## Checking a render
 
 Headless Chrome with `--virtual-time-budget` freezes the GSAP loader, so a plain screenshot
