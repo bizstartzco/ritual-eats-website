@@ -460,6 +460,57 @@ footer{border-top:1px solid var(--line);padding-block:60px 40px;position:relativ
 .receipt p{color:var(--cream-dim);font-size:.92rem}
 .toast{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--cream);color:#1a1207;padding:.8em 1.3em;border-radius:999px;font-weight:600;z-index:1500;opacity:0;transition:opacity .4s,transform .5s var(--ease);pointer-events:none;box-shadow:0 20px 50px -20px rgba(0,0,0,.8);white-space:nowrap;max-width:calc(100% - 32px);text-overflow:ellipsis;overflow:hidden}
 .toast.is-on{opacity:1;transform:translate(-50%,0)}
+/* chat */
+.chat-btn{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:950;display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border-radius:999px;background:var(--rust);color:var(--cream);font-weight:600;font-size:.95rem;box-shadow:0 18px 50px -14px rgba(156,44,12,.9),0 0 0 1px rgba(252,224,188,.08);transition:transform .5s var(--ease),background .3s,opacity .4s}
+.chat-btn:hover{transform:translateY(-3px);background:var(--rust-hi)}
+.chat-btn svg{width:22px;height:22px}
+.chat-btn .chat-dot{width:9px;height:9px;border-radius:50%;background:var(--lettuce);box-shadow:0 0 10px var(--lettuce);animation:ember 2.2s ease-in-out infinite}
+.chat-btn.is-read .chat-dot{display:none}
+.chat-btn.is-open{opacity:0;pointer-events:none;transform:scale(.8)}
+.chat-nudge{position:fixed;left:20px;bottom:calc(78px + env(safe-area-inset-bottom,0px));z-index:950;background:var(--cream);color:#1a1207;padding:.7em 1em;border-radius:16px 16px 16px 4px;font-size:.9rem;font-weight:500;box-shadow:0 20px 50px -20px rgba(0,0,0,.8);opacity:0;transform:translateY(8px);transition:opacity .4s,transform .5s var(--ease);pointer-events:none;max-width:240px}
+.chat-nudge.is-on{opacity:1;transform:none}
+.chat{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:1150;width:min(390px,calc(100% - 40px));height:min(600px,calc(100svh - 40px - env(safe-area-inset-bottom,0px) - env(safe-area-inset-top,0px)));display:grid;grid-template-rows:auto 1fr auto auto auto;background:var(--smoke);border:1px solid var(--line);border-radius:24px;box-shadow:0 40px 90px -30px rgba(0,0,0,.9);transform-origin:0 100%;transform:scale(.9) translateY(12px);opacity:0;pointer-events:none;transition:transform .55s var(--ease),opacity .35s;overflow:hidden}
+.chat.is-open{transform:none;opacity:1;pointer-events:auto}
+.chat-head{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 18px;border-bottom:1px solid var(--line);background:var(--char)}
+.chat-head img{height:22px;width:auto}
+.chat-head div{display:grid;line-height:1.2;margin-right:auto}
+.chat-head b{font-family:var(--display);font-weight:800;font-size:1.05rem}
+.chat-head span{font-size:.78rem;color:var(--cream-faint)}
+.chat-head span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--lettuce);margin-right:6px;vertical-align:1px}
+.chat-head.is-closed span::before{background:var(--ketchup)}
+.chat-log{overflow:auto;padding:16px;display:grid;gap:10px;align-content:start;scroll-behavior:smooth;overscroll-behavior:contain}
+.msg{max-width:86%;padding:.7em 1em;border-radius:18px;font-size:.95rem;line-height:1.45;animation:msgin .45s var(--ease) both;white-space:pre-line}
+.msg.bot{background:var(--ash);border-bottom-left-radius:6px;justify-self:start}
+.msg.user{background:var(--rust);color:var(--cream);border-bottom-right-radius:6px;justify-self:end}
+.msg a{color:var(--gold);text-decoration:underline}
+@keyframes msgin{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+.msg-actions{display:flex;flex-wrap:wrap;gap:6px;justify-self:start;animation:msgin .45s var(--ease) both}
+.msg-actions button,.chat-chips button{padding:.5em .9em;border-radius:999px;border:1px solid rgba(252,224,188,.25);color:var(--cream);font-size:.82rem;font-weight:500;transition:background .3s,border-color .3s,transform .4s var(--ease);background:transparent}
+.msg-actions button:hover,.chat-chips button:hover{background:var(--rust);border-color:var(--rust);transform:translateY(-2px)}
+.msg-actions button.primary{background:var(--cream);color:#1a1207;border-color:var(--cream)}
+.typing{display:inline-flex;gap:4px;padding:.9em 1em;background:var(--ash);border-radius:18px;border-bottom-left-radius:6px;justify-self:start}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--cream-dim);animation:tdot 1s ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+.chat-chips{display:flex;gap:6px;overflow-x:auto;padding:4px 16px 10px;scrollbar-width:none}
+.chat-chips::-webkit-scrollbar{display:none}
+.chat-chips button{white-space:nowrap;flex:none}
+.chat-form{display:grid;grid-template-columns:1fr auto;gap:8px;padding:0 12px 10px}
+.chat-form input{padding:.8em 1em;border-radius:999px;background:var(--char);border:1px solid var(--line);color:var(--cream);min-width:0}
+.chat-form input:focus{border-color:var(--gold);outline:0}
+.chat-form input::placeholder{color:var(--cream-faint)}
+.chat-form button{width:44px;height:44px;border-radius:50%;background:var(--rust);color:var(--cream);display:grid;place-items:center;transition:transform .4s var(--ease),background .3s}
+.chat-form button:hover{transform:scale(1.06);background:var(--rust-hi)}
+.chat-form button svg{width:18px;height:18px}
+.chat-foot{font-size:.72rem;color:var(--cream-faint);padding:0 16px 12px;text-align:center}
+@media (max-width:640px){
+  .chat{left:0;right:0;bottom:0;width:100%;height:100%;border-radius:0;border:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .chat-btn{left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));padding:12px 14px}
+  .chat-btn .chat-btn-label{display:none}
+  .chat-nudge{left:16px;bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+  .msg{max-width:90%}
+}
+@media (prefers-reduced-motion:reduce){.msg,.msg-actions,.typing i,.chat-btn .chat-dot{animation:none}.chat{transition:none}}
 [hidden]{display:none!important}
 @media (max-width:900px){
   .hero-grid,.process-grid,.stack-wrap,.visit-grid,.cta-grid,.head-row{grid-template-columns:minmax(0,1fr)}
@@ -875,6 +926,26 @@ footer{border-top:1px solid var(--line);padding-block:60px 40px;position:relativ
   </div>
 </footer>
 
+<button class="chat-btn" id="chatBtn" aria-label="Chat with Ritual Eats" aria-expanded="false" aria-controls="chat">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.2-4.2A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+  <span class="chat-btn-label">Chat with us</span><i class="chat-dot"></i>
+</button>
+<div class="chat-nudge" id="chatNudge" aria-hidden="true">Hungry? Ask me about the menu, hours or a booth.</div>
+<section class="chat" id="chat" aria-label="Chat with Ritual Eats" aria-hidden="true">
+  <header class="chat-head" id="chatHead">
+    <img src="img/logo-sm.png" alt="" width="537" height="157">
+    <div><b>Counter bot</b><span id="chatStatus">Checking hours</span></div>
+    <button class="close" id="chatClose" aria-label="Close chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </header>
+  <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
+  <div class="chat-chips" id="chatChips"></div>
+  <form class="chat-form" id="chatForm" novalidate>
+    <label for="chatInput" class="sr-only" hidden>Your message</label>
+    <input id="chatInput" name="message" placeholder="Ask about hours, the menu, a booth" autocomplete="off" maxlength="400">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+  <p class="chat-foot" id="chatFoot">Answers come from this site. For anything else, text <b>+1 (555) 012-3456</b>.</p>
+</section>
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true">
   <div class="d-head"><h3>Your order</h3><button class="close" id="closeCart" aria-label="Close order"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
@@ -886,6 +957,9 @@ footer{border-top:1px solid var(--line);padding-block:60px 40px;position:relativ
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+/* Chat configuration. Leave endpoint empty for the built-in counter bot; set it to your deployed
+   server/worker.js URL to answer with Claude instead (see server/README.md). */
+window.RITUAL_CHAT = { endpoint: '', phone: '+1 (555) 012-3456', smsHref: 'sms:+15550123456' };
 (function(){
   var $ = function(s,c){return (c||document).querySelector(s)};
   var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
@@ -917,6 +991,8 @@ footer{border-top:1px solid var(--line);padding-block:60px 40px;position:relativ
     if (hours) hours.innerHTML = HOURS.map(function(h,i){
       return '<div class="'+(i===now.getDay()?'today':'')+'"><span>'+DAYS[i]+'</span><span>'+fmt(h[0])+' to '+fmt(h[1])+'</span></div>';
     }).join('');
+    var ch = $('#chatHead'), cs = $('#chatStatus');
+    if (ch) { ch.classList.toggle('is-closed', !s.open); cs.textContent = s.open ? 'Open now, closes '+s.until : 'Closed, opens '+s.at+' '+s.day; }
     var clock = $('#footClock');
     if (clock) clock.textContent = 'Kitchen time '+ now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   }
@@ -1027,10 +1103,10 @@ footer{border-top:1px solid var(--line);padding-block:60px 40px;position:relativ
       {p:0,                     s:S(hr.left, hr.top + sy, 1, 0, 0, 0)},
       {p:at($('.marquee')),     s:S(vw*.62, vh*.5, .6, 28, 32, 16)},
       {p:at($('#kitchen')),     s:S(vw*.8, vh*.55, .42, -14, -34, -12)},
-      {p:at($('#story')),       s:S(vw*.04, vh*.62, .38, 16, 30, 10)},
+      {p:at($('#story')),       s:S(vw*.06, vh*.5, .38, 16, 30, 10)},
       {p:at($('#menu')),        s:S(vw*.86, vh*.1, .28, -22, -34, -16)},
       {p:at($('.manifesto')),   s:S(vw*.78, vh*.45, .55, 8, 28, 10)},
-      {p:at($('#stack')),       s:S(vw*.08, vh*.66, .4, -12, -30, -8)},
+      {p:at($('#stack')),       s:S(vw*.1, vh*.52, .4, -12, -30, -8)},
       {p:at($('#visit')),       s:S(vw*.9, vh*.06, .3, 20, 34, 16)},
       {p:landP,                 s:S(landX, landY, padSize/size*.92, 0, 0, 0)}
     ];
@@ -1312,6 +1388,119 @@ footer{border-top:1px solid var(--line);padding-block:60px 40px;position:relativ
     });
   }
   renderCart();
+
+  /* ---------- chat ---------- */
+  var CHAT = window.RITUAL_CHAT || {};
+  var chat = $('#chat'), chatBtn = $('#chatBtn'), chatLog = $('#chatLog'), chatChips = $('#chatChips'), chatInput = $('#chatInput'), chatNudge = $('#chatNudge');
+  var history = [], chatOpen = false, busy = false;
+  try { history = JSON.parse(sessionStorage.getItem('ritual-chat') || '[]'); } catch(e){}
+  function saveChat(){ try { sessionStorage.setItem('ritual-chat', JSON.stringify(history.slice(-30))); } catch(e){} }
+
+  var ITEM_WORDS = {
+    classic:/\b(classic|single|plain|ritual burger)\b/, bacon:/\b(bacon|double|char)\b/, mushroom:/\b(mushroom|truffle|shroom|swiss)\b/,
+    spicy:/\b(jalape|inferno|spicy|spiciest|hottest|heat|chil+i)/, chicken:/\b(chicken|bird|honey|fried)\b/, veggie:/\b(veg|veggie|vegan|vegetarian|beet|bean|plant)/,
+    fries:/\b(fries|chips)\b/, rings:/\b(onion|rings?)\b/, shake:/\b(shake|milkshake|vanilla)\b/, cola:/\b(cola|coke|soda|soft drink|drinks?)\b/
+  };
+  var DESC = {
+    classic:'Single smash, american cheese, pickles, white onion, ritual sauce on a sesame brioche.',
+    bacon:'Two patties, thick-cut bacon, smoked cheddar, crispy onion, black-pepper BBQ glaze.',
+    mushroom:'Butter-sautéed mushrooms, swiss, truffle mayo, rocket.',
+    spicy:'Pepper jack, fresh and pickled jalapeño, chipotle mayo, red onion. Ghost-pepper glaze on request.',
+    chicken:'Buttermilk-brined thigh, craggy crust, slaw, pickles, hot honey.',
+    veggie:'Charred beet and black bean patty, avocado, rocket, tomato, vegan aioli, seeded bun. Fully plant-based.',
+    fries:'Double-fried crinkle cut with oak-smoked salt.', rings:'Thick rings in stout batter with ritual sauce.',
+    shake:'Real vanilla pods, whipped cream, too thick for a straw.', cola:'Cane sugar, orange peel, a lot of ice.'
+  };
+  function cartLine(){ var n = count(); if (!n) return 'Nothing on the tray yet.'; var sub = Object.keys(cart).reduce(function(t,id){ return t + CATALOG[id].price*cart[id]; }, 0); return n+' item'+(n===1?'':'s')+' on the tray, '+money(sub)+' so far.'; }
+  function findItem(t){ for (var id in ITEM_WORDS) if (ITEM_WORDS[id].test(t)) return id; return null; }
+  function menuText(){ return ['classic','bacon','mushroom','spicy','chicken','veggie'].map(function(id){ return CATALOG[id].name+' '+money(CATALOG[id].price); }).join('\n') + '\n\nSides: fries $4, onion rings $5, vanilla shake $5.50, house cola $3.'; }
+  var A = { menu:{label:'See the menu', run:function(){ closeChat(); location.hash = '#menu'; }},
+            order:{label:'Open my order', run:function(){ closeChat(); openCart(); }},
+            book:{label:'Book a booth', run:function(){ closeChat(); location.hash = '#visit'; setTimeout(function(){ var d = $('#bDate'); if (d) d.focus(); }, 600); }},
+            maps:{label:'Open in Maps', href:'https://www.google.com/maps/search/?api=1&query=12+Ritual+Lane+Old+Town'},
+            text:{label:'Text the counter', href:CHAT.smsHref || '#'} };
+  function addAction(id){ return {label:'Add '+CATALOG[id].name, primary:true, run:function(){ add(id); botSay('Added '+CATALOG[id].name+'. '+cartLine(), [A.order, A.menu]); }}; }
+
+  function brain(text){
+    var t = text.toLowerCase().trim(), now = new Date(), st = openState(now), d = now.getDay();
+    var item = findItem(t);
+    if (/^(hi|hey|hello|yo|hiya|good (morning|evening|afternoon))\b/.test(t) && t.length < 25) return ['Hi. I can tell you about hours, the menu, prices, tonight\'s special, booking a booth, or start an order for you.', [A.menu, A.book]];
+    if (/\b(thank|thanks|cheers|ta\b|bye|see you)/.test(t)) return ['Any time. The steel is hot until '+(st.open ? st.until : 'close')+'.', []];
+    if (/\b(human|person|staff|someone|manager|call|phone|number|text|whatsapp|email|contact|speak to)/.test(t)) return ['A person answers texts at '+CHAT.phone+' during opening hours. Calls go to the same number.', [A.text]];
+    if (/\b(allerg|gluten|celiac|coeliac|nut|dairy|lactose|halal|kosher|sesame|ingredient|contain)/.test(t)) return ['I do not have the allergen sheet, and I would rather not guess. Text the counter at '+CHAT.phone+' and a person will check with the kitchen before you order.', [A.text]];
+    if (/\b(hour|open|close|closing|opening|time|late|tonight|today|when)/.test(t) && !/special/.test(t)) {
+      var line = st.open ? 'Open right now, closing at '+st.until+'.' : 'Closed right now. We open at '+st.at+' '+st.day+'.';
+      return [line+'\n\nSunday to Thursday 11:00 to 23:00.\nFriday and Saturday 11:00 to 01:00.', [A.book]];
+    }
+    if (/\b(special|deal|offer|discount|promo|cheap)/.test(t)) return [DAYS[d]+' special: '+SPECIALS[d][0]+'. '+SPECIALS[d][1]+' It changes at midnight.', [addAction(Object.keys(CATALOG).filter(function(id){ return CATALOG[id].name === SPECIALS[d][0]; })[0] || 'classic')]];
+    if (/\b(book|booth|table|reserv|seat|party|group)/.test(t)) return ['Booths seat four and can be booked on this page. Counter stools are walk-in only. We hold a booking for fifteen minutes.', [A.book]];
+    if (/\b(deliver|delivery|pickup|pick up|collect|takeaway|take away|how long|wait|ready)/.test(t)) return ['Pickup is free and ready in about twelve minutes. Delivery is $3.50 and a little longer. '+cartLine(), [A.order, A.menu]];
+    if (/\b(add|want|get|order|give me|take|put|i\'ll have|i will have|can i have)\b/.test(t) && item) { add(item); return ['Added '+CATALOG[item].name+' for '+money(CATALOG[item].price)+'. '+cartLine(), [A.order, item !== 'fries' ? addAction('fries') : addAction('shake')]]; }
+    if (/\b(order|cart|basket|tray|my order|checkout|total)\b/.test(t)) return [cartLine(), [A.order, A.menu]];
+    if (/\b(price|cost|how much|\$)/.test(t) && item) return [CATALOG[item].name+' is '+money(CATALOG[item].price)+'. '+DESC[item], [addAction(item)]];
+    if (/\b(price|cost|how much|expensive)/.test(t)) return ['Burgers run '+money(9.5)+' to '+money(13)+'.\n\n'+menuText(), [A.menu]];
+    if (/\b(vegan|vegetarian|veggie|plant|meat.?free)/.test(t)) return ['Beet & Bean is the plant-based one: '+DESC.veggie+' '+money(CATALOG.veggie.price)+'.', [addAction('veggie')]];
+    if (/\b(spicy|spiciest|hottest|heat|hot one)/.test(t)) return ['Jalapeño Inferno. '+DESC.spicy+' '+money(CATALOG.spicy.price)+'.', [addAction('spicy')]];
+    if (/\b(best|recommend|popular|favourite|favorite|signature|should i|what.?s good)/.test(t)) return ['The Ritual Classic is what the place is built on: '+DESC.classic+' If you are hungry, Double Bacon Char.', [addAction('classic'), addAction('bacon')]];
+    if (item) return [CATALOG[item].name+', '+money(CATALOG[item].price)+'. '+DESC[item], [addAction(item), A.menu]];
+    if (/\b(menu|burger|food|eat|what do you have|what.?s on|options|sides|drinks?|shakes?)/.test(t)) return [menuText(), [A.menu, addAction('classic')]];
+    if (/\b(where|address|location|find|directions|map|near|parking|park)/.test(t)) return ['12 Ritual Lane, Old Town. Two doors down from the night pharmacy, look for the amber strip light.'+(/park/.test(t) ? ' I do not have parking details, the counter will know.' : ''), [A.maps]];
+    if (/\b(wifi|wi-fi|kids|children|dog|pet|toilet|bathroom|card|cash|pay|tip)/.test(t)) return ['That is one for a person. Text the counter at '+CHAT.phone+' and someone will answer.', [A.text]];
+    return ['I can help with hours, the menu, prices, tonight\'s special, booking a booth, and orders. For anything else, text the counter at '+CHAT.phone+'.', [A.menu, A.book, A.text]];
+  }
+
+  function scrollLog(){ chatLog.scrollTop = chatLog.scrollHeight; }
+  function bubble(role, text){ var m = document.createElement('div'); m.className = 'msg '+role; m.textContent = text; chatLog.appendChild(m); scrollLog(); return m; }
+  function actionsRow(actions){
+    if (!actions || !actions.length) return;
+    var row = document.createElement('div'); row.className = 'msg-actions';
+    actions.forEach(function(a){
+      var b = document.createElement(a.href ? 'a' : 'button'); b.textContent = a.label; if (a.primary) b.className = 'primary';
+      if (a.href) { b.href = a.href; if (/^https?:/.test(a.href)) { b.target = '_blank'; b.rel = 'noopener'; } b.className += ' btn-link'; b.style.cssText = 'padding:.5em .9em;border-radius:999px;border:1px solid rgba(252,224,188,.25);font-size:.82rem'; }
+      else b.addEventListener('click', function(){ a.run(); });
+      row.appendChild(b);
+    });
+    chatLog.appendChild(row); scrollLog();
+  }
+  function botSay(text, actions, save){ bubble('bot', text); actionsRow(actions); if (save !== false) { history.push({role:'assistant', content:text}); saveChat(); } }
+  function typing(){ var t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>'; chatLog.appendChild(t); scrollLog(); return t; }
+
+  function pageContext(){ var st = openState(new Date()), d = new Date().getDay(); return {open:st.open, until:st.until||null, opensAt:st.at||null, special:SPECIALS[d][0]+' ('+SPECIALS[d][1]+')', cart:cartLine(), localTime:new Date().toString()}; }
+  function askServer(text){
+    return fetch(CHAT.endpoint, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({messages:history.slice(-12).concat([{role:'user', content:text}]), context:pageContext()})})
+      .then(function(r){ if (!r.ok) throw new Error('chat '+r.status); return r.json(); })
+      .then(function(j){ if (!j || typeof j.reply !== 'string') throw new Error('bad reply'); return j.reply; });
+  }
+  function send(text){
+    text = (text || '').trim(); if (!text || busy) return;
+    bubble('user', text); history.push({role:'user', content:text}); saveChat();
+    chatInput.value = ''; busy = true;
+    var t = typing(), started = Date.now();
+    function finish(reply, actions){ var wait = Math.max(0, 500 + Math.min(text.length*12, 900) - (Date.now()-started)); setTimeout(function(){ t.remove(); botSay(reply, actions); busy = false; }, wait); }
+    var local = brain(text);
+    if (CHAT.endpoint) askServer(text).then(function(r){ finish(r, local[1].slice(0,2)); }).catch(function(){ finish(local[0], local[1]); });
+    else finish(local[0], local[1]);
+  }
+  function openChat(){
+    chatOpen = true; chat.classList.add('is-open'); chat.setAttribute('aria-hidden','false'); chatBtn.classList.add('is-open','is-read'); chatBtn.setAttribute('aria-expanded','true'); chatNudge.classList.remove('is-on');
+    if (window.innerWidth < 640) document.body.style.overflow = 'hidden';
+    if (!chatLog.children.length) {
+      if (history.length) history.forEach(function(m){ bubble(m.role === 'user' ? 'user' : 'bot', m.content); });
+      else botSay('Hi, I am the counter bot. Ask me about hours, the menu, tonight\'s special, or a booth. I can add things to your order too.', [A.menu, A.book], false);
+    }
+    setTimeout(function(){ if (window.innerWidth >= 640) chatInput.focus(); scrollLog(); }, 350);
+  }
+  function closeChat(){ chatOpen = false; chat.classList.remove('is-open'); chat.setAttribute('aria-hidden','true'); chatBtn.classList.remove('is-open'); chatBtn.setAttribute('aria-expanded','false'); if (window.innerWidth < 640) document.body.style.overflow = ''; }
+  chatBtn.addEventListener('click', openChat);
+  $('#chatClose').addEventListener('click', closeChat);
+  $('#chatForm').addEventListener('submit', function(e){ e.preventDefault(); send(chatInput.value); });
+  [['Hours','What are your hours?'],['Menu','What is on the menu?'],['Tonight\'s special','What is tonight\'s special?'],['Book a booth','I want to book a booth'],['Where are you?','Where are you?'],['Vegan option','Do you have a vegan burger?']].forEach(function(c){
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = c[0]; b.addEventListener('click', function(){ send(c[1]); }); chatChips.appendChild(b);
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && chatOpen) closeChat(); });
+  if (CHAT.phone) $('#chatFoot').innerHTML = 'Answers come from this site. For anything else, text <b>'+CHAT.phone+'</b>.';
+  if (!history.length) setTimeout(function(){ if (!chatOpen) { chatNudge.classList.add('is-on'); setTimeout(function(){ chatNudge.classList.remove('is-on'); }, 9000); } }, 14000);
+  window.ritualChat = {open:openChat, close:closeChat, send:send};
 
   /* ---------- booking form ---------- */
   var bDate = $('#bDate'), bTime = $('#bTime');
