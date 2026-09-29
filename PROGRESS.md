@@ -2,6 +2,17 @@
 
 Newest first. Each entry is a version you can open at the preview link.
 
+## 2026-09-29 — Version 4: phone layout pass
+
+- Audited at a real phone size (390×844) with frames every 8% of the scroll.
+- Fixed content that ran past the right edge (grid columns and one heading accent).
+- The travelling burger now docks as a small 3D companion in the bottom-right corner between
+  sections on phones, mostly clear of the reading area, then flies into its landing ring.
+- Compact "Open / Closed" pill in the phone nav; bigger tap targets on Add and quantity buttons.
+- Tighter section spacing, full-width buttons, larger hero type, and the closing headline no
+  longer overlaps itself on small screens.
+- Lighter effects on touch devices to keep scrolling smooth.
+
 ## 2026-09-29 — Version 3: Ritual Eats branding
 
 - Logo added to the loading screen, navigation and footer (cut out from the supplied file so it
